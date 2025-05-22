@@ -69,7 +69,7 @@ public class ViewTransaction {
                         System.out::println,
                         () -> System.out.println("Transaction not found."));
             }
-            case 3 -> transactionService.getAll().forEach(System.out::println);
+            case 3 -> transactionService.getAll();
             case 4 -> {
                 System.out.print("Enter transaction ID: ");
                 long id = scanner.nextLong();

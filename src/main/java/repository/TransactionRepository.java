@@ -1,12 +1,11 @@
 package repository;
 
+import EstruturaDeDadosListaEncadeada.TransactionHistory;
 import entities.Account;
 import entities.Transaction;
 import interfaces.ITransactionRepository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import util.JPAUtil;
 
 import java.time.LocalDate;
@@ -54,12 +53,38 @@ public class TransactionRepository implements ITransactionRepository<Transaction
     }
 
     @Override
-    public List<Transaction> getAll() {
+    public TransactionHistory getAll() {
         EntityManager em = JPAUtil.getEntityManager();
         List<Transaction> transactions = em.createQuery("SELECT t FROM Transaction t", Transaction.class).getResultList();
         em.close();
-        return transactions;
+
+        TransactionHistory history = new TransactionHistory();
+
+        for (Transaction tx : transactions) {
+            // Acessa os campos da transação
+            Long id = tx.getId();
+            String tipo = tx.getTypeTransaction();
+            double valor = tx.getValue();
+            LocalDate data = tx.getDate();
+            Account origem = tx.getOriginAccount();
+            Account destino = tx.getDestinationAccount();
+
+            // Adiciona à lista encadeada
+            history.add(id, tipo, valor, data, origem, destino);
+
+            // Imprime os dados da transação
+            System.out.println("ID: " + id);
+            System.out.println("Tipo: " + tipo);
+            System.out.printf("Valor: R$ %.2f\n", valor);
+            System.out.println("Data: " + data);
+            System.out.println("Conta de Origem: " + origem);
+            System.out.println("Conta de Destino: " + destino);
+            System.out.println("-------------------------");
+        }
+
+        return history;
     }
+
 
     @Override
     public void update(Transaction transaction) {

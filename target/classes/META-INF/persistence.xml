@@ -14,13 +14,13 @@
 
         <properties>
             <!-- JDBC config -->
-            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/InovaBank"/>
-            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
-            <property name="jakarta.persistence.jdbc.password" value="#Leticia328"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/inovabank?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
+            <property name="jakarta.persistence.jdbc.user" value="user"/>
+            <property name="jakarta.persistence.jdbc.password" value="password"/>
 
             <!-- Hibernate config -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

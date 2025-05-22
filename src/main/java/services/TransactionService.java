@@ -1,9 +1,10 @@
 package services;
 
+import EstruturaDeDadosListaEncadeada.TransactionHistory;
 import entities.Transaction;
 import interfaces.ITransactionService;
 import repository.TransactionRepository;
-import java.util.List;
+
 import java.util.Optional;
 
 public class TransactionService implements ITransactionService<Transaction> {
@@ -29,7 +30,7 @@ public class TransactionService implements ITransactionService<Transaction> {
     }
 
     @Override
-    public List<Transaction> getAll() {
+    public TransactionHistory getAll() {
         return transactionRepository.getAll();
     }
 
