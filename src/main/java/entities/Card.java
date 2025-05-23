@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "cards")
 public class Card {
+    // Talvez mude.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
