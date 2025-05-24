@@ -4,9 +4,9 @@ import entities.PixTransaction;
 import java.util.List;
 import java.util.Optional;
 
-public interface IPixTransactionRepository {
+public interface IPixTransactionService {
 
-    void create(PixTransaction pixTransaction);
+    void createPixTransaction(PixTransaction pixTransaction);
 
     Optional<PixTransaction> findById(Long id);
 

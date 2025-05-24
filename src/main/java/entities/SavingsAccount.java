@@ -3,13 +3,15 @@ package entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
     public class SavingsAccount extends Account {
 
-    private double interestRate;
+    private BigDecimal interestRate;
 
     @Column(name = "latest_interest_update")
     private LocalDate latestInterestUpdate;
@@ -18,17 +20,17 @@ import java.util.Objects;
         super();
     }
 
-    public SavingsAccount(String accountNumber, double balance, Client client, double interestRate, LocalDate latestInterestUpdate) {
+    public SavingsAccount(String accountNumber, BigDecimal balance, Client client, BigDecimal interestRate, LocalDate latestInterestUpdate) {
         super(accountNumber, balance, client);
         this.interestRate = interestRate;
         this.latestInterestUpdate = latestInterestUpdate;
     }
 
-    public double getInterestRate() {
+    public BigDecimal getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
     }
 
@@ -54,7 +56,7 @@ import java.util.Objects;
         if (!(o instanceof SavingsAccount)) return false;
         if (!super.equals(o)) return false;
         SavingsAccount that = (SavingsAccount) o;
-        return Double.compare(that.interestRate, interestRate) == 0 &&
+        return Objects.equals(interestRate, that.interestRate) &&
                 Objects.equals(latestInterestUpdate, that.latestInterestUpdate);
     }
 

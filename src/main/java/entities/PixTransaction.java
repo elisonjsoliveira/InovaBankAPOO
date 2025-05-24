@@ -10,33 +10,29 @@ public class PixTransaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "transaction_id", unique = true)
-    private Transaction transaction;
-
     private String pixKeyUsed;
 
     private String keyTypeUsed;
 
-    public PixTransaction() {
-    }
+    // Relacionamento com a conta que fez a transação
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    public PixTransaction(Transaction transaction, String pixKeyUsed, String keyTypeUsed) {
-        this.transaction = transaction;
+    public PixTransaction() {}
+
+    public PixTransaction(String pixKeyUsed, String keyTypeUsed, Account account) {
         this.pixKeyUsed = pixKeyUsed;
         this.keyTypeUsed = keyTypeUsed;
+        this.account = account;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPixKeyUsed() {
@@ -55,14 +51,12 @@ public class PixTransaction {
         this.keyTypeUsed = keyTypeUsed;
     }
 
-    @Override
-    public String toString() {
-        return "PixTransaction{" +
-                "id=" + id +
-                ", transaction=" + (transaction != null ? transaction.getId() : null) +
-                ", pixKeyUsed='" + pixKeyUsed + '\'' +
-                ", keyTypeUsed='" + keyTypeUsed + '\'' +
-                '}';
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
@@ -71,13 +65,23 @@ public class PixTransaction {
         if (!(o instanceof PixTransaction)) return false;
         PixTransaction that = (PixTransaction) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(transaction, that.transaction) &&
                 Objects.equals(pixKeyUsed, that.pixKeyUsed) &&
-                Objects.equals(keyTypeUsed, that.keyTypeUsed);
+                Objects.equals(keyTypeUsed, that.keyTypeUsed) &&
+                Objects.equals(account, that.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, transaction, pixKeyUsed, keyTypeUsed);
+        return Objects.hash(id, pixKeyUsed, keyTypeUsed, account);
+    }
+
+    @Override
+    public String toString() {
+        return "PixTransaction{" +
+                "id=" + id +
+                ", pixKeyUsed='" + pixKeyUsed + '\'' +
+                ", keyTypeUsed='" + keyTypeUsed + '\'' +
+                ", account=" + (account != null ? account.getAccountNumber() : null) +
+                '}';
     }
 }

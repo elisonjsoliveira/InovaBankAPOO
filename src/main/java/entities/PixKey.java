@@ -10,18 +10,15 @@ public class PixKey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Valor da chave me si.
     private String keyValue;
 
-    // Tipo da chave(email, telefone, cpf e etc.)
     private String keyType;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public PixKey() {
-    }
+    public PixKey() {}
 
     public PixKey(String keyValue, String keyType, Account account) {
         this.keyValue = keyValue;
@@ -31,6 +28,10 @@ public class PixKey {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getKeyValue() {
@@ -58,16 +59,6 @@ public class PixKey {
     }
 
     @Override
-    public String toString() {
-        return "PixKey{" +
-                "id=" + id +
-                ", keyValue='" + keyValue + '\'' +
-                ", keyType='" + keyType + '\'' +
-                ", account=" + (account != null ? account.getAccountNumber() : null) +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PixKey)) return false;
@@ -81,5 +72,15 @@ public class PixKey {
     @Override
     public int hashCode() {
         return Objects.hash(id, keyValue, keyType, account);
+    }
+
+    @Override
+    public String toString() {
+        return "PixKey{" +
+                "id=" + id +
+                ", keyValue='" + keyValue + '\'' +
+                ", keyType='" + keyType + '\'' +
+                ", account=" + (account != null ? account.getAccountNumber() : null) +
+                '}';
     }
 }

@@ -3,6 +3,8 @@ package entities;
 
 import jakarta.persistence.Entity;
 
+import java.math.BigDecimal;
+
 @Entity
 public class CurrentAccount extends Account {
 
@@ -10,7 +12,7 @@ public class CurrentAccount extends Account {
         super();
     }
 
-    public CurrentAccount(String accountNumber, double balance, Client client) {
+    public CurrentAccount(String accountNumber, BigDecimal balance, Client client) {
         super(accountNumber, balance, client);
     }
 

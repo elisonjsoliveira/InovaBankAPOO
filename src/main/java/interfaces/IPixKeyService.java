@@ -4,9 +4,9 @@ import entities.PixKey;
 import java.util.List;
 import java.util.Optional;
 
-public interface IPixKeyRepository {
+public interface IPixKeyService {
 
-    void create(PixKey pixKey);
+    void createPixKey(PixKey pixKey);
 
     Optional<PixKey> findByKeyValue(String keyValue);
 

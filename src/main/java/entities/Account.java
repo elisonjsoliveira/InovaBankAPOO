@@ -1,6 +1,8 @@
 package entities;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +18,7 @@ public abstract class Account {
     @Column(unique = true, nullable = false)
     private String accountNumber;
 
-    private double balance;
+    private BigDecimal balance;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "client_id")
@@ -28,7 +30,7 @@ public abstract class Account {
     public Account() {
     }
 
-    public Account(String accountNumber, double balance, Client client) {
+    public Account(String accountNumber, BigDecimal balance, Client client) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.client = client;
@@ -46,11 +48,11 @@ public abstract class Account {
         this.accountNumber = accountNumber;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
