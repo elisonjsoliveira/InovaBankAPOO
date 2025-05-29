@@ -21,9 +21,9 @@
 
             <!-- Hibernate config -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Antes estava update -->
+            <property name="hibernate.show_sql" value="false"/> <!-- Antes estava true -->
+            <property name="hibernate.format_sql" value="false"/> <!-- Antes estava true -->
         </properties>
     </persistence-unit>
 </persistence>

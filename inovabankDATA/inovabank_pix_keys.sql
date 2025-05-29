@@ -18,31 +18,31 @@ USE `inovabank`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `accounts`
+-- Table structure for table `pix_keys`
 --
 
-DROP TABLE IF EXISTS `accounts`;
+DROP TABLE IF EXISTS `pix_keys`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `accounts` (
+CREATE TABLE `pix_keys` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `accountNumber` varchar(255) DEFAULT NULL,
-  `balance` double NOT NULL,
-  `client_id` bigint NOT NULL,
+  `keyType` enum('CPF','EMAIL','PHONE','RANDOM') NOT NULL,
+  `keyValue` varchar(255) NOT NULL,
+  `account_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKgymog7firrf8bnoiig61666ob` (`client_id`),
-  CONSTRAINT `FKgymog7firrf8bnoiig61666ob` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UK_p8am4jj2v3yls9gjos7rnf5qd` (`keyValue`),
+  KEY `FKr44gj7j6iftwu62l2a6jusoie` (`account_id`),
+  CONSTRAINT `FKr44gj7j6iftwu62l2a6jusoie` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `accounts`
+-- Dumping data for table `pix_keys`
 --
 
-LOCK TABLES `accounts` WRITE;
-/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'123456',3600,1),(2,'456789',1700,2);
-/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+LOCK TABLES `pix_keys` WRITE;
+/*!40000 ALTER TABLE `pix_keys` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pix_keys` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-22 14:38:59
+-- Dump completed on 2025-05-29 14:40:43

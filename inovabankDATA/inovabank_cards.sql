@@ -18,31 +18,34 @@ USE `inovabank`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `clients`
+-- Table structure for table `cards`
 --
 
-DROP TABLE IF EXISTS `clients`;
+DROP TABLE IF EXISTS `cards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `clients` (
+CREATE TABLE `cards` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `birthDate` date DEFAULT NULL,
-  `cpf` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `cardNumber` varchar(255) NOT NULL,
+  `cardType` varchar(255) NOT NULL,
+  `creditLimit` decimal(19,2) NOT NULL,
+  `cvv` int NOT NULL,
+  `validity` date NOT NULL,
+  `account_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_6dvprn0y0oadgyy1outy5xwmq` (`cardNumber`),
+  KEY `FK4s4sst8ylop2qykcy702u4bes` (`account_id`),
+  CONSTRAINT `FK4s4sst8ylop2qykcy702u4bes` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `clients`
+-- Dumping data for table `cards`
 --
 
-LOCK TABLES `clients` WRITE;
-/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'1986-10-14','12345678900','carlwhite@email.com','Carl White','+55 101'),(2,'2001-05-17','98765432100','annerose@email.com','Anne Rose','+55 102');
-/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+LOCK TABLES `cards` WRITE;
+/*!40000 ALTER TABLE `cards` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-22 14:38:59
+-- Dump completed on 2025-05-29 14:40:44

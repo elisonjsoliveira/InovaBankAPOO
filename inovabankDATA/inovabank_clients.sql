@@ -18,35 +18,33 @@ USE `inovabank`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `transactions`
+-- Table structure for table `clients`
 --
 
-DROP TABLE IF EXISTS `transactions`;
+DROP TABLE IF EXISTS `clients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `transactions` (
+CREATE TABLE `clients` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `typeTransaction` varchar(255) NOT NULL,
-  `value` double NOT NULL,
-  `destination_account_id` bigint NOT NULL,
-  `origin_account_id` bigint NOT NULL,
+  `birth_date` date NOT NULL,
+  `cpf` varchar(14) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK5598b948ilps8u4o3qvfo4j52` (`destination_account_id`),
-  KEY `FKbyq02vjcctqu84njk1cjk6aa9` (`origin_account_id`),
-  CONSTRAINT `FK5598b948ilps8u4o3qvfo4j52` FOREIGN KEY (`destination_account_id`) REFERENCES `accounts` (`id`),
-  CONSTRAINT `FKbyq02vjcctqu84njk1cjk6aa9` FOREIGN KEY (`origin_account_id`) REFERENCES `accounts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UK_7it9dgecuhaofss241235vdcn` (`cpf`),
+  UNIQUE KEY `UK_srv16ica2c1csub334bxjjb59` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `transactions`
+-- Dumping data for table `clients`
 --
 
-LOCK TABLES `transactions` WRITE;
-/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,'2025-05-21','Pix',400,2,1),(2,'2025-05-21','TED',700,1,2);
-/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+LOCK TABLES `clients` WRITE;
+/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-22 14:38:59
+-- Dump completed on 2025-05-29 14:40:44
